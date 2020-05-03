@@ -1,9 +1,8 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <stdbool.h>
 
 typedef struct s_list {
@@ -11,6 +10,6 @@ typedef struct s_list {
     struct s_list *next;
 } t_list;
 
-t_list *mx_sort_list(t_list *list, bool (*cmp)(void *a, void *b));
+void mx_del_node_if(t_list**list, void *del_data, bool(*cmp)(void *a, void *b));
 
 #endif

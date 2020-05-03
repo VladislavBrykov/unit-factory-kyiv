@@ -6,3 +6,4 @@ t_list  *mx_create_node(void *data) {
     head_file->next = NULL;  //prisvaivanie ykazatelu na sledusii element znachenia NULL
     return head_file;
 }
+

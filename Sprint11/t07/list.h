@@ -1,16 +1,16 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <unistd.h>
 
 typedef struct s_list {
     void *data;
     struct s_list *next;
 } t_list;
 
-t_list *mx_sort_list(t_list *list, bool (*cmp)(void *a, void *b));
+void mx_pop_back(t_list **list);
+void mx_pop_index(t_list **list, int index);
+void mx_pop_front(t_list **list);
 
 #endif

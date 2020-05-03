@@ -3,13 +3,11 @@
 
 #include <stdlib.h>
 
-typedef struct s_list   //sozdanie nowogo tipa
-{
-	void *data;    //hranimoe znachenie
-	struct s_list *next;  //ykazatel na sledusiy yzel
-}		t_list;   //nazvanie stryktyru
+typedef struct s_list {
+    void *data;
+    struct s_list *next;
+} t_list;
 
-void mx_foreach_list(t_list *list, void(*f)(t_list *node));
+void mx_foreach_list(t_list *list, void (*f)(t_list *node));
 
 #endif
-

@@ -1,21 +1,23 @@
 #include "list.h"
 
 void mx_push_index(t_list **list, void *data, int index) {
-    int count = 0;
-    t_list *result = mx_create_node(data);
-    t_list *tem = *list;
-    int flag = 0;
+    int file = 0;
+
+    t_list *res = mx_create_node(data);
+    t_list *temp = *list;
+    int point = 0;
 
     if (index <= 0)
         mx_push_front(list, data);
-    while (tem != NULL) {
-        if (count == index - 1) {
-            result->next = tem->next;
-            tem->next = result;
-            flag = 1; }
-        tem = tem->next;
-        ++count; }
-    if (flag != 1)
+    while (temp != NULL) {
+        if (file == index -1) {
+            res->next = temp->next;
+            temp->next = res;
+            point = 1;
+        }
+        temp = temp->next;
+        ++file;
+    }
+    if (point != 1)
         mx_push_back(list, data);
 }
-
