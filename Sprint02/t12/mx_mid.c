@@ -5,7 +5,7 @@ bool mx_mid(int a, int b, int c)
 {
       if (a < b && a > c)
               return a;
-      else if (b < a && b > c)
+      else if (b < a && b < c)
               return b;
       else if (c < a && c > b)
               return c;
@@ -15,7 +15,7 @@ bool mx_mid(int a, int b, int c)
 //{ 					eto mozno ispolzovat dla proverki
 //	if (a < b && a > c)
 //		printf("%d", a);
-//	else if (b < a && b > c)
+//	else if (b < a && b < c)
 //		printf("%d", b);
 //	else if (c < a && c > b)
 //		printf("%d", c);
