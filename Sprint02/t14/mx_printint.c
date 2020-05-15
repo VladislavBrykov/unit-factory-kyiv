@@ -1,18 +1,23 @@
-void mx_printchar(char c);
+#include <unistd.h>
+#include <stdio.h>
 
+void mx_printchar(char c)
+{
+  write(1, &c, 1);
+}
 void mx_printint(int n) {
-    long number = n;  //[-2 147 483 647, +2 147 483 647]
-    if (number < 0) {
-	mx_printchar('-'); //vivodim - pered chislom
-        number = (number * -1);
-    }
-    if (number >= 10)
-        mx_printint(number / 10);
-    mx_printchar(number % 10 + 48);
+long num = n;
+if (num < 0) {
+    mx_printchar('-');
+    num *= -1;
+}
+if (num > 9)
+    mx_printint(num / 10); //recursion
+mx_printchar(num % 10 + 48);
 }
 
-//int main()
-//{
-//	mx_printint(-45756);
-//	return 0;
-//}
+int main()
+{
+  mx_printint(4567);
+  return 0;
+}
