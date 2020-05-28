@@ -1,9 +1,15 @@
 #include <stdio.h>
 
 int mx_strlen(const char *s) {
-	int l = 0;
-	for (int i=0;s[i]!=0;i++) {
-		l++;
-		}
-	return(l);
+	int i = 0;
+	while(s[i])
+		i++;
+	return i;
 }
+
+//int main() {
+//	const char s[6] = "Hello";
+//	printf("%d\n", mx_strlen(s));
+//	return 0;
+//}
+
