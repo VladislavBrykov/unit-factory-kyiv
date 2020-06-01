@@ -1,7 +1,30 @@
-int mx_strcmp(const char *s1, const char *s2);
-int mx_strlen(const char *s);
-void mx_printstr(const char *s);
-void mx_printchar(char c);
+#include <stdio.h>
+#include <unistd.h>
+
+void mx_printchar(char c) {
+	write(1, &c, 1);
+}
+
+int mx_strlen(const char *s) {
+	int num = 0;
+	while(s[num])
+		num++;
+	return num;
+}
+
+void mx_printstr(const char *s) {
+	write(1, s, mx_strlen(s));
+}
+
+int mx_strcmp(const char *s1, const char *s2) {
+	int i = 0;
+	while(s1[i]) { 
+		if(s1[i] != s2[i])
+		return(s1[i] - s2[i]);
+		i++;
+		}
+	return 0;
+}
 
 int main(int argc, char *argv[]) {
 
@@ -22,11 +45,3 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
-
-//kompilim
-//./mx_print_sargs Follow the white rabbit |cat -e
-//vidats
-//Follow$
-//rabbit$
-//the$
-//white$
