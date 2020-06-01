@@ -1,20 +1,31 @@
-void mx_printchar(char c);
-int mx_strlen(const char *s);
-void mx_printstr(const char *s);
+#include <stdio.h>
+#include <unistd.h>
 
-int main(int argc, char *argv[]) {
-    for(int i = 1; i < argc; i++) {
-	mx_printstr(argv[i]);
-	mx_printchar('\n');
-    }
-    return 0;
+void mx_printchar(char c) {
+	write(1, &c, 1);
 }
 
-//dla proverki kompilim
-//./mx_print_args Follow the white rabbit | cat -e
-//vidast argv s novih strok 
-//Follow$
-//the$
-//white$
-//rabbit$
+int mx_strlen(const char *s) {
+	int num = 0;
+	while(s[num])
+		num++;
+	return num;
+}
 
+void mx_printstr(const char *s) {
+	write(1, s, mx_strlen(s));
+}
+
+int main(int argc, char *argv[])
+{
+	int num = 1;
+	while (num < argc) {
+		mx_printstr(argv[num]);
+		mx_printchar('\n');
+		num++;
+	}
+	return 0;
+}
+
+//clang -std=c11 -Wall -Wextra -Werror -Wpedantic
+e2r7p9% ./test Hello Vlad good boy | cat -e 
