@@ -40,6 +40,7 @@ int main(int argc, char * argv[]) {
 			stop = i;
 		}
 	}
+//shift argv[0] value to the right
 	for(int a = 0; a <= stop; a++) {
 		argv[0]++;
 		
