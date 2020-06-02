@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <unistd.h>
+
 char *mx_strchr(const char *s, int c) {
 
 	char *str = (char *) s;
@@ -10,3 +13,10 @@ char *mx_strchr(const char *s, int c) {
 		return str;
 	return 0;
 }
+
+//int main() {
+//      const char s[11] = "01234567890";
+//      int c = '7';
+//      printf("%s", mx_strchr(s, c));
+//}
+
