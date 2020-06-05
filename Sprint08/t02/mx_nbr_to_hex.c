@@ -1,20 +1,66 @@
-nclude "nbr_to_hex.h"
-char *mx_nbr_to_hex(unsigned long nbr) {
-        char hexa[10];
-        int i = 0;
-        int num = nbr;
-        while(num != 0) {
-                int temp = 0;
-        temp = num % 16;
-        if (temp < 10) {
-                hexa[i] = temp + 48;
-                i++; }
-        else {
-                hexa[i] = temp + 55;
-                i++; }
-        num /= 16; }
-        char *arr = mx_strnew(i);
-        for(int a = i - 1, index = 0; a >= 0; a--, index++) {
-                arr[index] = hexa[a]; }
-        return arr;
+#include "nbr_to_hex.h"
+
+static void swap_char(char *s1, char *s2){
+  char x = *(s1);
+  *(s1) = *(s2);
+  *(s2) = x;
 }
+static int strlenn(const char *s) {
+  int i;
+  for(i = 0; s[i] != '\0'; i++);
+  return i;
+}
+static void str_reverse(char *s){
+  int lenght = strlenn(s);
+  int mid = lenght / 2;
+  for(int s1 = 0;s1 <= mid;s1++){ 
+    if(lenght <= s1)
+    break;
+    lenght -= 1;
+    swap_char(&s[s1], &s[lenght]);
+  }
+}
+char *mx_nbr_to_hex(unsigned long nbr) {
+  unsigned long nbr2 = nbr;
+  int lenght = 1;
+  int temp;
+  int i = 0;
+  while((nbr2 / 10) > 1){
+    nbr2 /= 10;
+    lenght++;
+  }
+  char *string = mx_strnew(lenght);
+  //char str[2] = {0};
+  while(nbr != 0){
+    temp = nbr % 16;
+    if(temp < 10){
+      string[i] = 48 + temp;
+    }
+    else{
+      string[i] = 87 + temp;
+    }
+    nbr /= 16;
+    i++;
+  }
+  str_reverse(string);
+  return string;
+}
+int main(void) {
+  unsigned long temp = 10000;
+  char *a = mx_nbr_to_hex(temp);
+  printf("%s", a);
+}
+
+
+/*
+DESCRIPTION
+create a function that converts an unsigned 
+long number into a hexadecimal string.
+
+RETURN
+Returns the number converted to a haxademical string.
+
+mx_nbr_to_hex(52); returns "34"
+mx_nbr_to_hex(1000); returns "3e8"
+*/
+
