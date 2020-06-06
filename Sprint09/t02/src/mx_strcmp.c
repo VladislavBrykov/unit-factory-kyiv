@@ -1,27 +1,24 @@
-//#include <stdio.h>
+#include "header.h"
+
 int mx_strcmp(const char *s1, const char *s2) {
-    while (*s1 != '\0') {
-        if (*s2 == '\0') {
-            return 1;
-        }
-        if (*s2 > *s1) {
-            return -1;
-        }
-        if (*s1 > *s2) {
-            return 1;
-        }
-    s1++;
-    s2++;
-    }
-    if (*s2 != '\0') {
-        return -1;
-    }
-    return 0;
+	int i = 0;
+	int j = 0;
+	while(s1[i] == s2[j]) {
+		i++;
+		j++;
+	}
+	return(s1[i] - s2[j]);
 }
 
-//int main () {
-//char a [] = "rabbit";
-//char b []= "Follow";
-//printf ("%d\n",mx_strcmp(a, b));
+//int main() {
+//	int result;
+//	char str1[5] = "Hello";
+//	char str2[6] = "Halloy";
+//	printf("my: ");
+//	printf("%d\n", mx_strcmp(str1, str2));
+//	printf("strcmp: ");
+//	result = strcmp(str1, str2);
+//	printf("%d\n", result);
+//	return 0;
 //}
 
