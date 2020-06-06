@@ -1,18 +1,16 @@
-//#include <stdio.h>
+#include "header.h"
 
-int mx_strlen(const char *s){
-  int i;
-  int j = 0;
-
-  for (i = 0; s[i] != '\0'; i++){
-    if (s[i] == j) {
-      return j++;
-    }     
-  }      
-  return i;
+int mx_strlen(const char *s)
+{
+	int i = 0;
+	while(s[i]) {
+		i++;
+	}
+	return i;
 }
 
-//int main () {
-//printf("%d",mx_strlen("asddf"));
-//}
-
+/*int main()
+{
+	printf("%d\n", mx_strlen("fghj"));
+	return 0;
+}*/
