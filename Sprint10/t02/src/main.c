@@ -21,5 +21,30 @@ int main(int argc, char *argv[]) {
                 write(1, &buff, 1);
         }
         close(f_read);
+
         exit(0);
 }
+
+
+/*
+DESCRIPTION
+Create a program that:
+• has the same behaviour as the system utility cat
+• prints the respective message to the stderr followed by a newline 
+if a source file does not exist
+Tips for this task
+1. You do not need to process cat options.
+2. Use the standard error for printing some errors.
+3. You can use errno if you know how.
+
+CONSOLE OUTPUT
+>./mx_cat | cat -e
+hello
+hello$
+>./mx_cat asdfg | cat -e
+mx_cat: asdfg: No such file or directory
+>./mx_cat Makefile
+#contents of the file
+>
+*/
+
