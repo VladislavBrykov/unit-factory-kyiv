@@ -6,8 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <stdio.h>
 
-char *mx_strcat(char *s1, const char *s2);
+char *mx_strcat_new(char *s1, const char *s2);
 char *mx_strcpy( char *dst, const char *src);
 char *mx_strdup(const char *str);
 int mx_strlen(const char *s);
