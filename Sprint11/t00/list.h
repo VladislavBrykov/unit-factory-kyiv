@@ -2,6 +2,7 @@
 #define LIST_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct s_list   //sozdanie nowogo tipa
 {
@@ -12,4 +13,11 @@ typedef struct s_list   //sozdanie nowogo tipa
 t_list *mx_create_node(void *data);
 
 #endif
+
+/*
+struct s_list создаем новое имя типа s_list
+будем пользоваться новым типом под именем t_list
+понимаем что под этим именем будет храниться инфформация о 
+*data и указатель на следующий елемент
+*/
 

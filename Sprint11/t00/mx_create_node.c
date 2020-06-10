@@ -7,3 +7,12 @@ t_list  *mx_create_node(void *data) {
     return head_file;
 }
 
+int main() {
+	t_list* head = mx_create_node("Hello");
+	printf("%s\n", head->data);
+	return 0;
+}
+
+/*head_file->data = data в элементе head_file 
+в яейку data нужно положить значение =data
+*/
