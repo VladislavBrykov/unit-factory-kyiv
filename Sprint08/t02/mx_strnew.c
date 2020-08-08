@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "nbr_to_hex.h"
 
 char *mx_strnew(const char size) {
 	char *arr = malloc(size * sizeof(*arr) + 1);
@@ -12,13 +11,13 @@ char *mx_strnew(const char size) {
 	return NULL;
 }
 
-int main()
+/*int main()
 {
 	printf("%s\n", mx_strnew(10));
 	return 0;
 }
 
-/*Выделили память под указатель на массив arr. Если память выделена arr != NULL
+Выделили память под указатель на массив arr. Если память выделена arr != NULL
 заполняем выделеную память. 
 
 malloc(size * sizeof(*arr) + 1) - размер умножаем тип char 1bt, int уже 4 будет

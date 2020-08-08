@@ -9,28 +9,12 @@ SRC = src/mx_atoi.c \
 		src/mx_strcpy.c\
 		src/mx_strlen.c
 
-SRC_IN = mx_atoi.c \
-		mx_isdigit.c \
-		mx_isspace.c \
-		mx_printchar.c \
-		mx_printint.c \
-		mx_printstr.c \
-		mx_strcmp.c \
-		mx_strcpy.c\
-		mx_strlen.c 
+SRC_IN = *.c
 
-OBJ = mx_atoi.o \
-		mx_isdigit.o \
-		mx_isspace.o \
-		mx_printchar.o \
-		mx_printint.o \
-		mx_printstr.o \
-		mx_strcmp.o \
-		mx_strcpy.o \
-		mx_strlen.o 
+OBJ = *.o
 
 INC = inc/header.h
-INC_IN = header.h
+INC_IN = *.h
 
 COMPILLER = -std=c11 -Wall -Wextra -Werror -Wpedantic -c
 all: MINILIBMX

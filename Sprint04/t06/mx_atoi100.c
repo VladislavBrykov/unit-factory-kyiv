@@ -34,9 +34,9 @@ int mx_atoi(const char *str) {
 	return num != 0 ? num * sign : 0;
 }
 
-int main(void) {
+/*int main(void) {
 	char str[20] = "-9813";
 	printf("function: %d\n", atoi(str));
 	printf("my atoi: %d", mx_atoi(str));
-}
+}*/
 

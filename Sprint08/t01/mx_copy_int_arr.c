@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "duplicate.h"
 
 int *mx_copy_int_arr(const int *src, int size) {
     if (src == 0 || size <= 0) {

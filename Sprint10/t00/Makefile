@@ -13,6 +13,3 @@ clean:
 	@rm -rf *.c
 	@rm -rf *.h
 reinstall: uninstall install
-	@rm -rf *.c
-	@rm -rf *.h
-

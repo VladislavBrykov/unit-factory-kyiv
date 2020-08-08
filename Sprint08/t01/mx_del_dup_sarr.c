@@ -30,3 +30,12 @@ int *mx_del_dup_arr(int *src, int src_size, int *dst_size){
 
 	return p;
 }
+
+int main()
+{
+	int src[] = { 5, 3, 3, 2, 1 };
+	int dst_size[6];
+	printf("%d\n", *mx_del_dup_arr(src, 5, dst_size));
+	return 0;
+}
+

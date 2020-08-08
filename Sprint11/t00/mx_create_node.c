@@ -8,7 +8,7 @@ t_list  *mx_create_node(void *data) {
 }
 
 int main() {
-	t_list* head = mx_create_node("Hello");
+	t_list *head = mx_create_node("Hello");
 	printf("%s\n", head->data);
 	return 0;
 }

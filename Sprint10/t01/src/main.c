@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]) {
     
     src = open(argv[1], O_RDONLY);
 
-    if(src < 0) {
+    if(src <= 0) {
         mx_printerr("mx_cp: ");
         mx_printerr(argv[1]);
         mx_printerr(": No such file or directory\n");

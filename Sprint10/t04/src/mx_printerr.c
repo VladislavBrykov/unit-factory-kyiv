@@ -1,4 +1,4 @@
-#include "mx_cat.h"
+#include "mx_wc.h"
 
 void mx_printerr(const char *s) {
 	write(2, s, mx_strlen(s));

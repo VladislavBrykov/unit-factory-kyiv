@@ -4,7 +4,7 @@
 char *mx_strchr(const char *s, int c) {
 
 	char *str = (char *) s;
-	while(*str){
+	while(*str) {
 		if(*str == (char) c)
 			return str;
 		str++;
@@ -14,9 +14,8 @@ char *mx_strchr(const char *s, int c) {
 	return 0;
 }
 
-//int main() {
-//      const char s[11] = "01234567890";
-//      int c = '7';
-//      printf("%s", mx_strchr(s, c));
-//}
-
+int main() {
+      const char s[] = "01234567890";
+      int c = '5';
+      printf("%s\n", mx_strchr(s, c));
+}
