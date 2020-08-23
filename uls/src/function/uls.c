@@ -12,9 +12,9 @@ for ( ; j < argc; j++) {
         break;
     }
 }
-if (flag) {
+
+if (flag)
     d = opendir(name[j]);   
-}
 else 
     d = opendir("./");
 
