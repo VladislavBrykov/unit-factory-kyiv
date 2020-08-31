@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "../../../vbrykov"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"__config": "cpp"
+		}
+	}
+}
