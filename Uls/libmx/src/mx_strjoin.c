@@ -4,7 +4,6 @@ char *mx_strjoin(const char *s1, const char *s2) {
     char *str_join = NULL;
     int s1_len = 0;
     int s2_len = 0;
-
     if (!s1 && !s2) 
         return NULL;
     if (s1)

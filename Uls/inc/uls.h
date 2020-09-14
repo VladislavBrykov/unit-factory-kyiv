@@ -16,16 +16,8 @@
 #include <grp.h>
 #include <uuid/uuid.h>
 #include <pwd.h>
+#include <errno.h>
 #include <sys/ioctl.h>
-
-struct input_data {
-    char ***str_directory;
-    char **dir_file;
-    int max_long;
-} in_data;
-
-
-/////////////////////////////////////////////////////////////////////
 
 typedef struct flags {
     char *all_flags;
@@ -39,9 +31,8 @@ typedef struct flags {
     bool i;
     bool l;
     bool n;
-    bool m;
+    bool m;  //визуально не работает
     bool o;
-    bool p;
     bool r;
     bool s;
     bool t;
@@ -49,88 +40,91 @@ typedef struct flags {
 }              flags_t;
 
 typedef struct start_data_list {
-    char **dirs;             /* NULL-terminated 2d arr with names of DIRECTORIES from output */
+    char **dirs;              /* NULL-terminated 2d arr with names of DIRECTORIES from output */
     int dirs_num;             /* number of dirs in dirs array */
-    char **files;            /* NULL-terminated 2d arr with names of FILES from output */
-    int files_num;           /* number of files in files array */ 
-    char **no_file_dir;      /* NULL-terminated 2d arr with names of DIR/FILES that don't exist */
-    int no_fd_num;          /* number of non files of dirs in no_file_dir array */ 
+    char **files;             /* NULL-terminated 2d arr with names of FILES from output */
+    int files_num;            /* number of files in files array */ 
+    char **no_file_dir;       /* NULL-terminated 2d arr with names of DIR/FILES that don't exist */
+    int no_fd_num;            /* number of non files of dirs in no_file_dir array */ 
 }              start_t;
 
+typedef struct sorting_type {
+    bool revesre;
+    bool standart;
+    bool time;
+    bool size;
+}              sorting_t;
 
 typedef struct print_format {
-    bool standart;           /* true - print output to terminal in lines when, no -l, -n, -o, -g, -1, or -m flags*/
-    bool long_format;        /* true if -l, -n, -o, -g */
-    bool one_per_line;       /* true if -1 */
-    bool with_commas;        /* true if -m */
-    bool print_in_terminal;  /* true - no "| cat" or other options while start */
+    bool standart;              /* true - print output to terminal in lines when, no -l, -n, -o, -g, -1, or -m flags*/
+    bool long_format;           /* true if -l, -n, -o, -g */
+    bool one_per_line;          /* true if -1 */
+    bool with_commas;           /* true if -m */
+    bool print_in_terminal;     /* true - no "| cat" or other options while start */
+    sorting_t sorting;
+    bool human_readable;
 }              format_t;
 
-typedef struct data_storage {
+typedef struct data_storage {   /* structure that keeps all needed infomationt about every file or folder */
     char *name;
     long long blok;
+    char *block_ch;
     unsigned long long ind_num;
     long long size;
+    char *size_ch;
     long date_m;
+    char *date;
     char type;
     char *rights;
     char plus_or_at;
     unsigned short link_num;
+    char *link_num_ch;
     char *user_id;
     char *group_id;
+    char *link;
+    char *ind_num_ch;
 }              data_t;
 
-typedef struct biggest_len {
-    short b_namelen;
-    short b_blok;
-    short b_ind_num;
-    short b_size;
-    short b_user_id;
-    short b_group_id;
-}              biggest_t;
-
+typedef struct largest_len {    /*  structure that keeps largest length of every needed  */
+    short namelen;              /*  field for every folder, and all files from output    */
+    long long tot_block;
+    short bloknumlen;
+    short indnumlen;
+    short linknumlen;
+    short sizelen;
+    short useridlen;
+    short groupidlen;
+    short quantity;
+}              largest_t;
 
 void flags_init(flags_t *flag);
-void mem_free(flags_t *flag);
+void format_init(format_t *format);
 void input_parser(int argc, char **argv, flags_t *flag, format_t *format, start_t *start_data);
 void flag_detector(int count_flags, int argc, char **argv, flags_t *flag);
 void file_dir_detector(int count_flags, int argc, char **argv, format_t *format, start_t *start_data);
+void largest_init(largest_t ***largest, start_t *start_data);
 void format_detector(format_t *format, flags_t *flag, start_t *start_data);
 void data_collector(format_t *format, flags_t *flag, start_t *start_data, data_t ****data);
 void get_data(data_t *data, flags_t *flag, format_t *format, char *dir_name);
+void data_sorter(format_t *format, flags_t *flag, data_t ****data, start_t *start_data);
+void reverse_sorting(data_t ****data, start_t *start_data);
+void data_get_maxlen(largest_t ***largest, data_t ****data, start_t *start_data, flags_t *flag);
+
+void print_long_format(data_t ****data, flags_t *flag, largest_t ***largest, start_t *start_data);
+void print_no_fd(start_t *start_data);
+void print_long_string(data_t **data, flags_t *flag, largest_t *largest);
+void print_with_commas_format(data_t ****data, flags_t *flag, largest_t ***largest, start_t *start_data);
+void print_with_coma_string(data_t **data, flags_t *flag, largest_t *largest);
+void print_one_per_line_format(data_t ****data, flags_t *flag, largest_t ***largest, start_t *start_data);
+void print_one_per_line_string(data_t **data, flags_t *flag, largest_t *largest);
+void print_standart_format(data_t ****data, flags_t *flag, largest_t ***largest, start_t *start_data);
+void print_standart_string(data_t **data, flags_t *flag, largest_t *largest, int console_size, int col_width);
+
+void print_standart_string_file(data_t ***data, flags_t *flag, largest_t *largest, int console_size, int col_width, int l); //моя
+
+char *size_to_readable(long long size);
 void err_ill_option(char c, flags_t *flag);
-void format_init(format_t *format);
-//////////////////////////////////////////////////////////////
 
-char **sort_pack_dir(start_t *start_data);
-char **sort_pack_file(start_t *start_data);
-char **sort_pack_error(start_t *start_data);
-//void print_err(char **ss);
-
-char **no_such_directory(char **argv, int argc);
-char **no_such_file(char **argv, int argc);
-
-	int count_file(char **name, int argc);	
-	//int arr_tab(char **arr);
-	char **arr_init(int argc, int number);
-	char **arr_with_space(char **arr);
-	char **my_bubble_sort_file(char **arr, int size);
-	int size_consol(void);
-	int num_max_file(char **arr);
-
-void printf_file_directory(char **argv, int argc);
-
-
-void uls(int argc, char **name);
-	int count_directory(int argc, char **name);
-	void my_bubble_sort_directory(int argc);
-
-void printf_directory(int argc, int signal);
-
-void uls_a(int argc, int i, char **name);
-int number_town(int argc, int i, char **name);  ////считает количество вложенных папок во всех аргументах
-void my_bubble_sort(int argc);
-
-//void uls_only(int argc, int i, char **name);
+// void free_mem(data_t *data, start_t *start_data);
 
 #endif
